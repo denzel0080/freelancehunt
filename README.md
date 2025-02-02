@@ -46,15 +46,15 @@ cp .env.example .env
 docker-compose up -d --build
 
 # Install composer dependencies inside the container
-docker-compose exec app composer install
+docker-compose exec php composer install
 
 # Run database structure creating
 docker-compose exec php bash - enter to Bash inside container (/var/www/html#)
 after that -> 1) php bin/setup-db.php 2) php bin/import.php
 
 # Access the application
-# API will be available at http://localhost:8080
-# phpMyAdmin (database management) at http://localhost:8081
+- API will be available at http://localhost:8080
+- phpMyAdmin (database management) at http://localhost:8081
 
 # Frontend side install
 npm install
@@ -62,6 +62,10 @@ npm install
 # Frontend side run local env
 npm run dev
 ```
+### Env settings
+Add your values:
+- DATABASE_URL=
+- FREELANCEHUNT_API_KEY=
 
 #### Docker Compose Management
 ```bash
