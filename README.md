@@ -1,7 +1,7 @@
 # Testing Project (Clean Php+Vue.js+TypeScript)
 
 ## 🚀 Project Overview
-[A modern PHP-based for tracking and filtering freelance projects.](https://github.com/freelancehunt/code-test)
+[A modern PHP-based project for tracking and filtering freelance projects.](https://github.com/freelancehunt/code-test)
 
 ## ✨ Features
 - Comprehensive project filtering
