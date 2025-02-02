@@ -25,7 +25,7 @@
 
 ## 📦 Installation
 
-### Method 2: Docker Installation
+### Docker Installation
 
 #### Prerequisites
 - Docker
