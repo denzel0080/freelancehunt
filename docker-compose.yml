@@ -1,0 +1,49 @@
+services:
+ php:
+   build:
+     context: .
+     dockerfile: docker/php/Dockerfile
+   volumes:
+     - .:/var/www/html
+   ports:
+     - "8080:80"  # Apache uses port 80 internally
+   depends_on:
+     - db
+     - redis
+   environment:
+     - DATABASE_URL=mysql://user:password@db:3306/freelanceh
+     - REDIS_HOST=redis
+     - REDIS_PORT=6379
+
+ db:
+   image: mysql:8.0
+   environment:
+     MYSQL_DATABASE: freelanceh
+     MYSQL_USER: user
+     MYSQL_PASSWORD: password
+     MYSQL_ROOT_PASSWORD: rootpassword
+   ports:
+     - "3306:3306"
+   volumes:
+     - db_data:/var/lib/mysql
+
+ redis:
+   image: redis:alpine
+   ports:
+     - "6379:6379"
+   volumes:
+     - redis_data:/data
+
+ phpmyadmin:
+   image: phpmyadmin/phpmyadmin
+   ports:
+     - "8081:80"
+   environment:
+     PMA_HOST: db
+     MYSQL_ROOT_PASSWORD: rootpassword
+   depends_on:
+     - db
+
+volumes:
+ db_data:
+ redis_data:

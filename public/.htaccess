@@ -1,0 +1,33 @@
+# public/.htaccess
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Proper MIME types for JavaScript and other files
+    AddType application/javascript .js
+    AddType application/javascript .mjs
+    AddType text/css .css
+    AddType text/javascript .ts
+    AddType application/json .json
+
+    # API routes
+    RewriteCond %{REQUEST_URI} ^/api/projects [NC]
+    RewriteRule ^ api/projects.php [L,QSA]
+
+    # If file exists in public/dist, serve it directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !^/dist/
+    RewriteCond %{DOCUMENT_ROOT}/dist%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ /dist/$1 [L]
+
+    # Route all other requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Set proper headers for different file types
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|mjs|ts)$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+</IfModule>

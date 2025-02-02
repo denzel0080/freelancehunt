@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+.env
+.idea/
+.vscode/
+*.log
+.phpunit.result.cache
+package-lock.json
